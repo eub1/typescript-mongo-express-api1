@@ -1,34 +1,37 @@
-// import { config } from "dotenv";
-// config();
+import { config } from "dotenv";
+config();
 import express, {Request, Response} from "express";
-import mongoose from 'mongoose';
-import Deck from "./models/Deck";
+import mongoose from "mongoose";
+import cors from "cors";
+import {getDecksController} from "./controllers/getDeckController"
+import {createDeckController} from './controllers/createDeckController'
+import {deleteDeckController} from './controllers/deleteDeckController'
+import {createCardForDeckController} from './controllers/createCardForDeckController'
 
 const PORT = 3001
 
 const app = express();
 
+app.use(cors({
+  origin: "*",
+}));
+
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("hello world");
-});
+app.get("/decks", getDecksController);
 
-app.post("/decks", async(req: Request, res: Response) => {
+app.post("/decks", createDeckController);
 
-  const newDeck = new Deck({
-    title: req.body.title,
-  });
-  await newDeck.save();
+app.delete("/decks/:deckId", deleteDeckController);
 
-  const createdDeck = await newDeck.save();
-  res.json(createdDeck)
-});
+app.post("/decks/:deckId/cards", createCardForDeckController);
 
-mongoose.connect('mongodb+srv://proyect-1-user1:w8ogHdWVWji3e6hK@project1.b401okn.mongodb.net/?retryWrites=true&w=majority').then(()=>{
+mongoose.connect(process.env.MONGO_URL!).then(()=>{
     console.log(`Listening on port ${PORT}`);
     app.listen(PORT);
-});
+})
+// .catch((error) => {'connection failed due to error: ' + error.message})
 
-
+// const db = mongoose.connection
+// db.on("error", console.error.bind(console, "mongoDB connection error"))
 
