@@ -5,10 +5,11 @@ In this respository I'm following the MERN stack api that is tought on this yout
 # installation
 
 npm init -f
-npm install --save express
+npm i --save express
 npm i --save-dev ts-node
 npm i --save-dev @types/express
+npm i --save-dev nodemon
 
 # scripts
 
-"dev": "ts-node src/index.ts"
+npm run dev: nodemon watch's for changes in src folder, with extention ts or json, and executes ts-node src/index.ts
