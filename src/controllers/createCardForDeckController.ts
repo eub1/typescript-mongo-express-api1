@@ -3,12 +3,14 @@ import Deck from "../models/Deck";
 
 export async function createCardForDeckController (req: Request, res: Response) {
 
-  const newDeck = new Deck({
-    title: req.body.title,
-  });
-  await newDeck.save();
+  const {deckId} = req.params;
+  const deck = await Deck.findById(deckId);
 
-  const createdDeck = await newDeck.save();
-  res.json(createdDeck)
+  ;if(!deck) return res.status(400).send("no deck of this id exists")
+  const {text} = req.body;
+  deck?.cards.push(text)
+  await deck?.save();
+
+  res.json(deck)
 };
 
