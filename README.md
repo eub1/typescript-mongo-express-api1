@@ -12,6 +12,8 @@ npm i --save-dev nodemon
 npm i mongoose
 npm i --save-dev @types/mongoose
 npm i dotenv --save
+npm i --save cors
+npm i --save-dev @types/cors
 
 # scripts
 
