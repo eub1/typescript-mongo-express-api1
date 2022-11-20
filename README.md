@@ -9,6 +9,8 @@ npm i --save express
 npm i --save-dev ts-node
 npm i --save-dev @types/express
 npm i --save-dev nodemon
+npm i mongoose
+npm i --save-dev @types/mongoose
 
 # scripts
 
