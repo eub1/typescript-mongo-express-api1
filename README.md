@@ -6,3 +6,9 @@ In this respository I'm following the MERN stack api that is tought on this yout
 
 npm init -f
 npm install --save express
+npm i --save-dev ts-node
+npm i --save-dev @types/express
+
+# scripts
+
+"dev": "ts-node src/index.ts"
