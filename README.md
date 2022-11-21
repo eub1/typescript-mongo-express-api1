@@ -14,6 +14,7 @@ npm i --save-dev @types/mongoose
 npm i dotenv --save
 npm i --save cors
 npm i --save-dev @types/cors
+npx tsc --init
 
 # scripts
 
